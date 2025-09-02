@@ -220,7 +220,7 @@ async def auto_unfollow(update: Update, context: ContextTypes.DEFAULT_TYPE, sess
                     continue
                 await update.message.reply_text(f"{idx} ⚠️ Error unfollowing {uname}: {e}")
                 logger.error(f"User {user_id} error unfollowing {uname} after {retries} attempts: {e}")
-        sleep(uniform(3.0, 5.0))
+            sleep(uniform(3.0, 5.0))
 
     await update.message.reply_text("✅ Unfollow process completed!")
     logger.info(f"User {user_id} completed unfollow process")
@@ -391,7 +391,7 @@ async def set_webhook():
         logger.error("WEBHOOK_URL environment variable not set!")
         return
     try:
-        await application.bot.setWebhook(f"{webhook_url}/{os.getenv('TELEGRAM_BOT_TOKEN')}")
+        await application.bot.set_webhook(f"{webhook_url}/{os.getenv('TELEGRAM_BOT_TOKEN')}")
         logger.info(f"Webhook set to {webhook_url}")
     except Exception as e:
         logger.error(f"Failed to set webhook: {e}")
